@@ -1,0 +1,67 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Carbon_Champ.DeviceDetails"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="CARBON CHAMP">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="tariff">
+            
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="&#8377;" FontSize="100" HorizontalAlignment="Center"/>
+                        <TextBlock Name="TariffDisp" FontSize="100" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock Text="per year" HorizontalAlignment="Center" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Text="Your annual tariff is calculated upon the annual electricity units that are consumed by your devices. Hence, it is city specific. Ensure that you have selected your location from the main page settings.&#x0a;In order to minimise your expenses, try switching this device with one having a higher BEE star rating or limiting your usage." TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                </StackPanel>
+    
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="footprint">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Name="FootprintDisp" FontSize="100" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock Text="kgCO&#x2082;e per year" HorizontalAlignment="Center" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Text="This is the amount of CO&#x2082; emissions added by this device to your annual carbon footprint.&#x0a;Try reducing your carbon footprint by switching this device with one having a higher BEE star rating or limiting your usage.&#x0a;You can also download our individual carbon footprint calculator app for your phone from the Marketplace. Its called CarbonCalc." TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                </StackPanel>
+
+            </controls:PivotItem>
+            
+            <controls:PivotItem Header="energy">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Name="EnergyDisp" FontSize="100" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock Text="kWh per year" HorizontalAlignment="Center" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
+                    <TextBlock Text="This represents your annual energy consumption in kiloWatt-hour.&#x0a;Save more energy by switching to energy efficient alternatives." TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                </StackPanel>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False">
+            <shell:ApplicationBarIconButton x:Name="SwitchButton" IconUri="/Images/switch.png" Text="switch" Click="SwitchButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+
+</phone:PhoneApplicationPage>

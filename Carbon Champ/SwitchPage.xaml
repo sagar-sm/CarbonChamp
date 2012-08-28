@@ -1,0 +1,89 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Carbon_Champ.SwitchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <DataTemplate x:Name="PickerFullModeItemTemplate">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding}" VerticalAlignment="Center" Margin="10" Style="{StaticResource PhoneTextLargeStyle}"/>
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="CARBON CHAMP" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="switch to" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+            <ScrollViewer Height="550" Grid.Row="1">
+                <StackPanel x:Name="ContentPanel" Margin="12,0,12,0">
+
+                    <StackPanel Name="ACForm">
+                        <toolkit:ListPicker Name="AC_type" Header="Type"/>
+                        <toolkit:ListPicker Name="AC_tonnage" Header="Tonnage"/>
+                        <toolkit:ListPicker Name="AC_rating" Header="BEE Star Rating" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                    <toolkit:ListPicker Name="AC_temperature" Header="Average Temperature Setting" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                    <toolkit:ListPicker Name="AC_DailyUsage" Header="Average usage hours per day" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                    <toolkit:ListPicker Name="AC_MonthlyUsage" Header="Average usage months per year" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                    </StackPanel>
+                    <StackPanel Name="RefriForm">
+                        <toolkit:ListPicker Name="Refri_type" Header="Type"/>
+                        <toolkit:ListPicker Name="Refri_rating" Header="BEE Star Rating"/>
+                        <toolkit:ListPicker Name="Refri_Volume" Header="Volume"/>
+                    </StackPanel>
+                    <StackPanel Name="FanForm">
+                        <toolkit:ListPicker Name="Fan_rating" Header="BEE Star Rating"/>
+                        <TextBlock Text="Number of fans" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox Name="Fan_count" InputScope="Number"/>
+                    <toolkit:ListPicker Name="Fan_DailyUsage" Header="Average usage hours per day" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                    <toolkit:ListPicker Name="Fan_MonthlyUsage" Header="Average usage months per year" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                    </StackPanel>
+                    <StackPanel Name="BulbForm">
+                        <toolkit:ListPicker Name="Bulb_type" Header="Type"/>
+                        <TextBlock Text="Number of bulbs" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox Name="Bulb_count" InputScope="Number"/>
+                    <toolkit:ListPicker Name="Bulb_DailyUsage" Header="Average usage hours per day"  FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                    </StackPanel>
+                    <StackPanel Name="WHForm">
+                        <toolkit:ListPicker Name="WH_rating" Header="BEE Star Rating"/>
+                        <toolkit:ListPicker Name="WH_Volume" Header="Volume"/>
+                    <toolkit:ListPicker Name="WH_DailyUsage" Header="Average usage hours per day" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                        <toolkit:ListPicker Name="WH_MonthlyUsage" Header="Average usage months per year"/>
+                    </StackPanel>
+                    <StackPanel Name="TVForm">
+                        <toolkit:ListPicker Name="TV_type" Header="Type"/>
+                        <toolkit:ListPicker Name="TV_rating" Header="BEE Star Rating"/>
+                        <toolkit:ListPicker Name="TV_size" Header="TV size (in inches)"/>
+                    <toolkit:ListPicker Name="TV_DailyUsage" Header="Average usage hours per day" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/next.png" Text="Go" Click="Next_Click"/>
+         </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

@@ -1,0 +1,225 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Carbon_Champ.AddDevice"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <DataTemplate x:Name="PickerFullModeItemTemplate">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding}" VerticalAlignment="Center" Margin="10" Style="{StaticResource PhoneTextLargeStyle}"/>
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+        <!--TitlePanel contains the name of the application and page title-->
+
+        <controls:Pivot Name="MainPivot" Title="CARBON CHAMP">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="my devices">
+                <!--ContentPanel - place additional content here-->
+                <StackPanel Name="ListPanel">
+                    <TextBlock Text="Tap any of your devices to see the various minimization options available. You can drastically control your expenditure and also reduce your carbon footprint by choosing energy efficient alternatives." Style="{StaticResource PhoneTextSubtleStyle}" TextWrapping="Wrap"/>
+                    <ScrollViewer Name="ACView">
+                        <ListBox Name="ACListbox" Height="400" SelectionChanged="Listbox_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Name="StarDisp" FontSize="72" Text="{Binding AC_rating}" FontFamily="Segoe WP Bold"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Name="Heading1" Text="Star" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                            <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
+                                                <TextBlock Text="Tariff:(INR)"/>
+                                                <TextBlock Name="SubHeading1" Text="{Binding Tariff}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <TextBlock Text="Type:"/>
+                                                <TextBlock Name="SubHeading2" Text="{Binding AC_type}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                    <ScrollViewer Name="RefriView">
+                        <ListBox Name="RefriListbox" Height="400" SelectionChanged="Listbox_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Name="StarDisp" FontSize="72" Text="{Binding Refri_rating}" FontFamily="Segoe WP Bold"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Name="Heading1" Text="Star" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                            <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
+                                                <TextBlock Text="Tariff:(INR)"/>
+                                                <TextBlock Name="SubHeading1" Text="{Binding Tariff}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <TextBlock Text="Type:"/>
+                                                <TextBlock Name="SubHeading2" Text="{Binding Refri_type}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                    <ScrollViewer Name="FanView">
+                        <ListBox Name="FanListbox" Height="400" SelectionChanged="Listbox_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Name="StarDisp" FontSize="72" Text="{Binding Fan_rating}" FontFamily="Segoe WP Bold"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Name="Heading1" Text="Star" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                            <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
+                                                <TextBlock Text="Tariff:(INR)"/>
+                                                <TextBlock Name="SubHeading1" Text="{Binding Tariff}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <TextBlock Text="No. of fans:"/>
+                                                <TextBlock Name="SubHeading2" Text="{Binding Fan_count}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                    <ScrollViewer Name="BulbView">
+                        <ListBox Name="BulbListbox" Height="400" SelectionChanged="Listbox_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Name="StarDisp" FontSize="72" Text="{Binding Bulb_count}" FontFamily="Segoe WP Bold"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Name="Heading1" Text="{Binding Bulb_type}" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                            <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
+                                                <TextBlock Text="Tariff:(INR)"/>
+                                                <TextBlock Name="SubHeading1" Text="{Binding Tariff}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <!--TextBlock Text="No. of Bulbs:"/>
+                                                <TextBlock Name="SubHeading2" Text="{Binding Bulb_count}" Style="{StaticResource PhoneTextSubtleStyle}"/-->
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                    <ScrollViewer Name="WHView">
+                        <ListBox Name="WHListbox" Height="400" SelectionChanged="Listbox_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Name="StarDisp" FontSize="72" Text="{Binding WH_rating}" FontFamily="Segoe WP Bold"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Name="Heading1" Text="Star" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                            <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
+                                                <TextBlock Text="Tariff:(INR)"/>
+                                                <TextBlock Name="SubHeading1" Text="{Binding Tariff}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <TextBlock Text="Volume (Litres):"/>
+                                                <TextBlock Name="SubHeading2" Text="{Binding WH_volume}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+                    <ScrollViewer Name="TVView">
+                        <ListBox Name="TVListbox" Height="400" SelectionChanged="Listbox_SelectionChanged">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Name="StarDisp" FontSize="72" Text="{Binding TV_rating}" FontFamily="Segoe WP Bold"/>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Name="Heading1" Text="Star" Style="{StaticResource PhoneTextLargeStyle}"/>
+                                            <StackPanel Orientation="Horizontal" Margin="13,0,0,0">
+                                                <TextBlock Text="Tariff:(INR)"/>
+                                                <TextBlock Name="SubHeading1" Text="{Binding Tariff}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                                <TextBlock Text="Type:"/>
+                                                <TextBlock Name="SubHeading2" Text="{Binding TV_type}" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </ScrollViewer>
+
+                </StackPanel>
+
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <!--controls:PivotItem Header="add new">
+
+                <ScrollViewer Height="550">
+                    <StackPanel x:Name="ContentPanel" Margin="12,0,12,0">
+
+                        <StackPanel Name="ACForm">
+                            <toolkit:ListPicker Name="AC_type" Header="Type"/>
+                            <toolkit:ListPicker Name="AC_tonnage" Header="Tonnage"/>
+                            <toolkit:ListPicker Name="AC_rating" Header="BEE Star Rating" FullModeItemTemplate="{StaticResource PickerFullModeItemTemplate}"/>
+                            <toolkit:ListPicker Name="AC_temperature" Header="Average Temperature Setting"/>
+                            <toolkit:ListPicker Name="AC_DailyUsage" Header="Average usage hours per day"/>
+                            <toolkit:ListPicker Name="AC_MonthlyUsage" Header="Average usage months per year"/>
+                        </StackPanel>
+                        <StackPanel Name="RefriForm">
+                            <toolkit:ListPicker Name="Refri_type" Header="Type"/>
+                            <toolkit:ListPicker Name="Refri_rating" Header="BEE Star Rating"/>
+                            <toolkit:ListPicker Name="Refri_Volume" Header="Volume"/>
+                        </StackPanel>
+                        <StackPanel Name="FanForm">
+                            <toolkit:ListPicker Name="Fan_rating" Header="BEE Star Rating"/>
+                            <TextBlock Text="Number of fans" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="Fan_count" Text="1" InputScope="Number"/>
+                            <toolkit:ListPicker Name="Fan_DailyUsage" Header="Average usage hours per day"/>
+                            <toolkit:ListPicker Name="Fan_MonthlyUsage" Header="Average usage months per year"/>
+                        </StackPanel>
+                        <StackPanel Name="BulbForm">
+                            <toolkit:ListPicker Name="Bulb_type" Header="Type"/>
+                            <TextBlock Text="Number of bulbs" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="Bulb_count" Text="1" InputScope="Number"/>
+                            <toolkit:ListPicker Name="Bulb_DailyUsage" Header="Average usage hours per day"/>
+                        </StackPanel>
+                        <StackPanel Name="WHForm">
+                            <toolkit:ListPicker Name="WH_rating" Header="BEE Star Rating"/>
+                            <toolkit:ListPicker Name="WH_Volume" Header="Volume"/>
+                            <toolkit:ListPicker Name="WH_DailyUsage" Header="Average usage hours per day"/>
+                            <toolkit:ListPicker Name="WH_MonthlyUsage" Header="Average usage months per year"/>
+                        </StackPanel>
+                        <StackPanel Name="TVForm">
+                            <toolkit:ListPicker Name="TV_type" Header="Type"/>
+                            <toolkit:ListPicker Name="TV_rating" Header="BEE Star Rating"/>
+                            <toolkit:ListPicker Name="TV_size" Header="TV size (in inches)"/>
+                            <toolkit:ListPicker Name="TV_DailyUsage" Header="Average usage hours per day"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem-->
+        </controls:Pivot>
+
+
+    </Grid>
+ 
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False">
+            <!--shell:ApplicationBarIconButton x:Name="SaveButton" IconUri="/Images/save.png" Text="save" Click="SaveButton_Click"/-->
+            <shell:ApplicationBarIconButton x:Name="AddNewButton" IconUri="/Images/add.png" Text="add" Click="AddNewButton_Click"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>

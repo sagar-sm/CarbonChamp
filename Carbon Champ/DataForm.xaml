@@ -1,0 +1,212 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="Carbon_Champ.DataForm"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="NO2CO2 CARBON FOOTPRINT CALCULATION">
+
+            <!--Pivot item one-->
+            <controls:PivotItem Header="travel">
+                <ScrollViewer Grid.Row="1">
+                    <StackPanel>
+                        <TextBlock Text="Inter-City Travel" Foreground="{StaticResource PhoneAccentBrush}" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="What is your weekly expense on..." Style="{StaticResource PhoneTextNormalStyle}" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="AutoRickshaw:" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="RickshawTbx" Width="250" InputScope="CurrencyAmount"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Taxi:" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="TaxiTbx" Width="250" InputScope="CurrencyAmount"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="AC Taxi:" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="ActaxiTbx" Width="250" InputScope="CurrencyAmount"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Bus:" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="BusTbx" Width="250" InputScope="CurrencyAmount"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="AC Bus:" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="AcbusTbx" Width="250" InputScope="CurrencyAmount"/>
+                        </StackPanel>
+                        <TextBlock Text="How many local train roundtrips do you make in a week on an average?" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <TextBox Name="LocalTrnTbx" InputScope="Number"/>
+                        <TextBlock Text="Average one-way local train duration in minutes:" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                        <TextBox Name="LocalTrnTimeTbx" InputScope="Number"/>
+                        <TextBlock Text="Do you use a chartered(office/school) bus?" Style="{StaticResource PhoneTextNormalStyle}" />
+                        <toolkit:ListPicker Name="SchBusBoolPkr" ItemCountThreshold="2" SelectionChanged="SchBusBoolPrk_SelectionChanged" />
+
+                        <StackPanel Name="CharteredTravelPanel">
+                            <TextBlock Text="Chartered travel round trips per week:" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="CharTbx" InputScope="Number"/>
+                            <TextBlock Text="Average one-way chartered bus roundtrip duration in minutes:" TextWrapping="Wrap" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="CharTimeTbx" InputScope="Number"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Private Travel" Foreground="{StaticResource PhoneAccentBrush}" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="Do you own a 4 wheeler?" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <toolkit:ListPicker Name="FourWlBoolPkr" ItemCountThreshold="2" SelectionChanged="FourWlBoolPkr_SelectionChanged"/>
+                        <StackPanel Name="FourWlPanel">
+                            <TextBlock Text="Do you usually travel alone (chauffeur not incl.)?" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <toolkit:ListPicker Name="LonelyPkr" ItemCountThreshold="2" SelectionChanged="LonelyPkr_SelectionChanged"/>
+                            <TextBlock Text="Fuel type of your vehicle:" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <toolkit:ListPicker Name="FourFuelPkr" ItemCountThreshold="4" SelectionChanged="FourFuelPkr_SelectionChanged"/>
+                            <TextBlock Text="Weekly expense on fuel in Rs:" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="FourTbx" InputScope="Number"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Minutes on 4 wheeler/day:" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBox Name="FourWlMinsTbx" Width="150" InputScope="Number"/>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Minutes on 2 wheeler/day:" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                <TextBox Name="TwoWlMinsTbx" Width="150" InputScope="Number"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <TextBlock Text="Long Distance Travel" Foreground="{StaticResource PhoneAccentBrush}" Style="{StaticResource PhoneTextLargeStyle}"/>
+                        <TextBlock Text="International Flights:" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Short &lt; 4hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="ShoIntFltTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Medium 4-8hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="MedIntFltTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Long &gt; 8hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="LngIntFltTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Domestic Flights:" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Short &lt; 45mins" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="ShoDomFltTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Medium 45-90mins" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="MedDomFltTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Long &gt; 90mins" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="LngDomFltTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Long Distance Trains:" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Short &lt; 4hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="ShoTrnTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Medium 4-12hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="MedTrnTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Long &gt; 12hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="LngTrnTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Long Distance Buses:" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Short &lt; 4hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="ShoBusTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Medium 4-12hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="MedBusTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Long &gt; 12hrs" Width="150" Margin="12,25" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                            <TextBox Name="LngBusTbx" Width="250" InputScope="Number"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="energy">
+                <StackPanel>
+                    <TextBlock Text="Monthly Electricity Bill:" Style="{StaticResource PhoneTextNormalStyle}" />
+                    <TextBox Name="ElecBillTbx" InputScope="Number"/>
+                    <TextBlock Text="Select the fuel that you use for cooking:"/>
+                    <toolkit:ListPicker Name="FuelPkr" ItemCountThreshold="4" SelectionChanged="FuelPkr_SelectionChanged" />
+                    <TextBlock Name="Fuelq1" Text="{Binding}" TextWrapping="Wrap"/>
+                    <TextBox Name="Fuela1" InputScope="Number"/>
+                </StackPanel>
+            </controls:PivotItem>
+
+            <controls:PivotItem Header="food">
+                <ScrollViewer Grid.Row="1">
+                    <StackPanel>
+                        <TextBlock Text="How much milk is consumed in your family per week approx?" Style="{StaticResource PhoneTextNormalStyle}" TextWrapping="Wrap"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Name="MilkTbx" Width="250" InputScope="Number"/>
+                            <TextBlock Text="Litres/week" Margin="12,25" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        </StackPanel>
+                        <TextBlock Text="How many times do you eat meat in a week?" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Name="MeatTbx" Width="250" InputScope="Number"/>
+                            <TextBlock Text="Meals/week" Margin="12,25" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        </StackPanel>
+                        <TextBlock Text="How many times do you eat rice in a week?" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Name="RiceTbx" Width="250" InputScope="Number" />
+                            <TextBlock Text="Meals/week" Margin="12,25" Style="{StaticResource PhoneTextNormalStyle}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+
+            <controls:PivotItem Header="other">
+                <StackPanel>
+                    <TextBlock Text="Number of people above 13 years of age in household:" TextWrapping="Wrap" Style="{StaticResource PhoneTextNormalStyle}"/>
+                    <TextBox Name="PeopleTbx" InputScope="Number"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="You currently stay in:" Margin="12,25" Style="{StaticResource PhoneTextNormalStyle}" />
+                        <toolkit:ListPicker x:Name="LocationPkr" Grid.Row="1" Width="226"  ItemCountThreshold="6" >
+                            <!--toolkit:ListPicker.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock x:Name="item" Text="{Binding}" FontSize="26" Margin="10, 6, 0, 8" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </toolkit:ListPicker.ItemTemplate-->
+                        </toolkit:ListPicker>
+                    </StackPanel>
+                </StackPanel>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+    
+</phone:PhoneApplicationPage>
