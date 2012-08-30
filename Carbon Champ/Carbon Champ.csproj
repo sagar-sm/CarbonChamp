@@ -167,6 +167,7 @@
     <Resource Include="Images\Bulbicon.png" />
     <Resource Include="Images\Fanicon.png" />
     <Resource Include="Images\green.jpg" />
+    <Content Include="Images\switch.png" />
     <Content Include="Images\save.png" />
     <Content Include="Images\settings.png" />
     <Content Include="Images\next.png" />
@@ -174,9 +175,10 @@
     <Content Include="Images\edit.png" />
     <Content Include="Images\help.png" />
     <Resource Include="Images\Refriicon.png" />
-    <Content Include="Images\switch.png" />
     <Resource Include="Images\TVicon.png" />
     <Resource Include="Images\WHicon.png" />
+    <Content Include="Images\tile0.png" />
+    <Content Include="Images\tile1.png" />
     <Content Include="Images\wand.png" />
   </ItemGroup>
   <ItemGroup />

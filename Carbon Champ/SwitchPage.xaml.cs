@@ -40,6 +40,10 @@ namespace Carbon_Champ
             init_data();
             index = Int32.Parse(NavigationContext.QueryString["index"]);
             isSwitch = Int32.Parse(NavigationContext.QueryString["isSwitch"]);
+            if (isSwitch == 1)
+                PageTitle.Text = "switch to";
+            else
+                PageTitle.Text = "add new";
         }
 
         void show_form(string type)
@@ -155,6 +159,8 @@ namespace Carbon_Champ
         {
             if (isSwitch == 1)
             {
+                bool allOK = true;
+
                 if (device_type == "ACForm")
                 {
 
@@ -189,19 +195,21 @@ namespace Carbon_Champ
                 {
                     if (Fan_count.Text == "")
                     {
-                        MessageBox.Show("Please enter valid number of fans");
+                        allOK = false;
+                        MessageBox.Show("Please enter valid number of fans");                        
                     }
                     else
                     {
                         Fan f = new Fan
                             {
-                                Fan_count = Int32.Parse(Fan_count.Text),
+                                Fan_count = Convert.ToInt32(Double.Parse(Fan_count.Text)),
                                 Fan_rating = Fan_rating.SelectedItem.ToString(),
                                 Fan_DailyUsage = Int32.Parse(Regex.Match(Fan_DailyUsage.SelectedItem.ToString(), @"\d+").Value),
                                 Fan_MonthlyUsage = Int32.Parse(Regex.Match(Fan_MonthlyUsage.SelectedItem.ToString(), @"\d+").Value)
                             };
                         f.Eval();
                         Globalv.Fan_sw = f;
+                        allOK = true;
                     }
                 }//end if 
 
@@ -209,6 +217,7 @@ namespace Carbon_Champ
                 {
                     if (Bulb_count.Text == "")
                     {
+                        allOK = false;
                         MessageBox.Show("Please enter valid number of bulbs");
                     }
                     else
@@ -216,11 +225,12 @@ namespace Carbon_Champ
                         Bulb b = new Bulb
                             {
                                 Bulb_type = Bulb_type.SelectedItem.ToString(),
-                                Bulb_count = Int32.Parse(Bulb_count.Text),
+                                Bulb_count = Convert.ToInt32(Double.Parse(Bulb_count.Text)),
                                 Bulb_DailyUsage = Int32.Parse(Regex.Match(Bulb_DailyUsage.SelectedItem.ToString(), @"\d+").Value),
                             };
                         b.Eval();
                         Globalv.Bulb_sw = b;
+                        allOK = true;
                     }
                 }//end if
 
@@ -253,10 +263,15 @@ namespace Carbon_Champ
                 }//end if
 
                 //ensure that isSwitched=1 and index=-1 never occur together.
-                NavigationService.Navigate(new Uri("/ComparePage.xaml?type=" + device_type + "&index=" + index.ToString(), UriKind.Relative));
+                if (allOK)
+                {
+                    NavigationService.Navigate(new Uri("/ComparePage.xaml?type=" + device_type + "&index=" + index.ToString(), UriKind.Relative));
+                }
             }
             else if (isSwitch == 0) //then save for add new
             {
+
+                bool allOK = true;
 
                 if (device_type == "ACForm")
                 {
@@ -373,6 +388,7 @@ namespace Carbon_Champ
                     xmlWriterSettings.Indent = true;
                     if (Fan_count.Text == "")
                     {
+                        allOK = false;
                         MessageBox.Show("Please enter valid number of fans");
                     }
                     else
@@ -391,7 +407,7 @@ namespace Carbon_Champ
 
                                 Fan f = new Fan
                                 {
-                                    Fan_count = Int32.Parse(Fan_count.Text),
+                                    Fan_count = Convert.ToInt32(Double.Parse(Fan_count.Text)),
                                     Fan_rating = Fan_rating.SelectedItem.ToString(),
                                     Fan_DailyUsage = Int32.Parse(Regex.Match(Fan_DailyUsage.SelectedItem.ToString(), @"\d+").Value),
                                     Fan_MonthlyUsage = Int32.Parse(Regex.Match(Fan_MonthlyUsage.SelectedItem.ToString(), @"\d+").Value)
@@ -404,7 +420,7 @@ namespace Carbon_Champ
                             {
                                 Fan f = new Fan
                                 {
-                                    Fan_count = Int32.Parse(Fan_count.Text),
+                                    Fan_count = Convert.ToInt32(Double.Parse(Fan_count.Text)),
                                     Fan_rating = Fan_rating.SelectedItem.ToString(),
                                     Fan_DailyUsage = Int32.Parse(Regex.Match(Fan_DailyUsage.SelectedItem.ToString(), @"\d+").Value),
                                     Fan_MonthlyUsage = Int32.Parse(Regex.Match(Fan_MonthlyUsage.SelectedItem.ToString(), @"\d+").Value)
@@ -422,6 +438,7 @@ namespace Carbon_Champ
                                 }
                             }
                         }
+                        allOK = true;
                     }
                 }//end if 
 
@@ -432,6 +449,7 @@ namespace Carbon_Champ
 
                     if (Bulb_count.Text == "")
                     {
+                        allOK = false;
                         MessageBox.Show("Please enter valid number of bulbs");
                     }
                     else
@@ -451,7 +469,7 @@ namespace Carbon_Champ
                                 Bulb b = new Bulb
                                 {
                                     Bulb_type = Bulb_type.SelectedItem.ToString(),
-                                    Bulb_count = Int32.Parse(Bulb_count.Text),
+                                    Bulb_count = Convert.ToInt32(Double.Parse(Bulb_count.Text)),
                                     Bulb_DailyUsage = Int32.Parse(Regex.Match(Bulb_DailyUsage.SelectedItem.ToString(), @"\d+").Value),
                                 };
                                 b.Eval();
@@ -463,7 +481,7 @@ namespace Carbon_Champ
                                 Bulb b = new Bulb
                                 {
                                     Bulb_type = Bulb_type.SelectedItem.ToString(),
-                                    Bulb_count = Int32.Parse(Bulb_count.Text),
+                                    Bulb_count = Convert.ToInt32(Double.Parse(Bulb_count.Text)),
                                     Bulb_DailyUsage = Int32.Parse(Regex.Match(Bulb_DailyUsage.SelectedItem.ToString(), @"\d+").Value),
                                 };
                                 b.Eval();
@@ -479,6 +497,7 @@ namespace Carbon_Champ
                                 }
                             }
                         }
+                        allOK = true;
                     }
                 }//end if
 
@@ -587,8 +606,11 @@ namespace Carbon_Champ
                 }//end if
 
 
-                MessageBox.Show("Device added successfully");
-                NavigationService.GoBack();
+                if (allOK)
+                {
+                    //MessageBox.Show("Device added successfully");
+                    NavigationService.GoBack();
+                }
 
             }//end save new
         }

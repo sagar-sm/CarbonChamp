@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using System.Threading;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
+using Microsoft.Phone.Shell;
 
 namespace Carbon_Champ
 {
@@ -29,6 +30,16 @@ namespace Carbon_Champ
             myPopup = new Popup() { IsOpen = true, Child = new AnimatedSplashScreen() };
             bgWorker = new BackgroundWorker();
             RunBackgroundWorker();
+            ShellTile LiveTile = ShellTile.ActiveTiles.First();
+            if (LiveTile != null)
+            {
+                StandardTileData tile = new StandardTileData();
+                tile.BackgroundImage = new Uri("/Images/tile0.png", UriKind.Relative);
+                tile.BackBackgroundImage = new Uri("/Images/tile1.png", UriKind.Relative);
+                tile.Title = "Carbon Champ";
+                tile.BackTitle="";
+                LiveTile.Update(tile);
+            }
 
         }
         private void RunBackgroundWorker()
